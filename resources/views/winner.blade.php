@@ -8,8 +8,8 @@
             <div class="card">
                 <ul class="list-group">
                     <li class="list-group-item active">Winners</li>
-                    @foreach ($winners as $item)
-                        <li class="list-group-item"><b>Name: </b>{{ $winner->name }} <b>Mark: {{ $winner->exam->total_mark }} </b></li>
+                    @foreach ($winners as $winner)
+                        <li class="list-group-item"><b>Name: </b>{{ $winner->name }} <b>Mark:  </b></li>
                     @endforeach
                     
                 </ul>

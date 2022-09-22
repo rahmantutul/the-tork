@@ -55,10 +55,9 @@ class HomeController extends Controller
             $exam->save();
          }
     }
-    public function max()
+    public function winner()
     {
         $winners=User::with('exam')->get();
-        $maxValue = Exam::max('total_mark');
-        return view('winner',compact('winners','maxValue'));
+        return view('winner',compact('winners'));
     }
 }

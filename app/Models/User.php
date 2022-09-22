@@ -43,6 +43,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function exam(){
-        return $this->belongsTo(App\Models\Exam::class,'user_id','id');
+        return $this->belongsTo(Exam::class,'user_id','id');
     }
 }
