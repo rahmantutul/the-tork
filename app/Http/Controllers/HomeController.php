@@ -31,17 +31,41 @@ class HomeController extends Controller
     public function exam(Request $request)
     {
         $data= $request->all();
-        if($request->first_two=='0.5'){
-            $markForOne= 0.5;
+        // For first MCQ 
+        if($request->first==' 0.25'){
+            $markForOne=  0.25;
         }else{
           $markForOne= -0.05;
         }
-        if($request->second_one=='0.5' && $request->second_three=='0.5'  ){
-          $markForSecond = 0.5;
+
+        
+        // For Second MCQ
+        if($request->second_one==' 0.25' && $request->second_three==' 0.25'  ){
+          $markForSecond =  0.25;
         }else{
-            $markForSecond= -0.5;
+            $markForSecond= -0.05;
         }
-        $totalMark= $markForOne + $markForSecond;
+
+        // For Third MCQ
+        if($request->first_op== 0.25){
+            $markForThird= 0.25;
+        }else{
+            $markForThird= -0.05;
+        }
+        if($request->second== 0.25){
+            $markForFour= 0.25;
+        }else{
+            $markForFour= -0.05;
+        }
+        if($request->third== 0.25){
+            $markForfive= 0.25;
+        }else{
+            $markForfive= -0.05;
+        }
+        $forThirdMcq= $markForThird +$markForFour +$markForfive;
+
+        
+        $totalMark= $markForOne + $markForSecond +$forThirdMcq;
         $user_id = Auth::user()->id;
         $exam = New Exam();
         $exam->user_id= $user_id;
@@ -53,11 +77,14 @@ class HomeController extends Controller
          }else{
 
             $exam->save();
+            return redirect()->back()->with('status','Thank you for perticipation!');
          }
     }
     public function winner()
-    {
-        $winners=User::with('exam')->get();
-        return view('winner',compact('winners'));
+    {    $winners =User::with('exam')->get();
+        
+          $maxNumber=Exam::max('total_marks');
+         
+        return view('winner',compact('winners','maxNumber'));
     }
 }

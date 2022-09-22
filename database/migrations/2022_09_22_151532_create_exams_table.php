@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('total_marks');
+            $table->float('total_marks');
             $table->timestamps();
         });
     }

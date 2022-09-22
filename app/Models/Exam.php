@@ -8,7 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     use HasFactory;
-    public function users(){
-        return $this->hasMany(App\Models\User::class,'id');
-    }
+    protected $fillable=['id','user_id','total_marks'];
 }

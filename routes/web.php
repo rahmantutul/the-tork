@@ -21,5 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/winner', [App\Http\Controllers\HomeController::class, 'winner'])->name('winner');
 Route::post('/exam',[App\Http\Controllers\HomeController::class, 'exam'])->name('exam');
+Route::get('/winner', [App\Http\Controllers\HomeController::class, 'winner'])->name('winner');
